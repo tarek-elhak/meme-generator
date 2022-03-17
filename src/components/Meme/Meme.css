@@ -1,0 +1,32 @@
+.form
+{
+    display: grid;
+    grid-template: 40px 40px / 1fr 1fr ;
+    gap: 15px 20px;
+}
+
+.form__input{
+    border: 1px solid #D5D4D8;
+    border-radius: 5px;
+    text-indent: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    color: #0D0D0D;
+}
+.form__btn{
+    grid-column: 1/-1;
+    padding: 20px;
+    background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: -0.1em;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

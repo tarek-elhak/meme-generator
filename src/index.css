@@ -3,10 +3,17 @@ body
 {
     box-sizing: border-box;
     font-family: 'Karla', sans-serif;
+    border: none;
+    outline: none;
 }
 *,*::before,*::after
 {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
+}
+
+main
+{
+    padding: 36px;
 }

@@ -1,7 +1,25 @@
-import "./Meme.css";
+import React,{useState,useEffect} from "react"
+import "./Meme.css"
 
 export default function Meme()
 {
+
+    const [memesData,setMemesData] = useState({})
+
+    useEffect(()=>{
+        fetch("https://api.imgflip.com/get_memes")
+            .then(response => {
+                response.json()
+                    .then(data => {
+                        setMemesData(data);
+                    })
+            })
+            .catch(error => {
+                console.log(`Error: ${error}`)
+            })
+    },[])
+
+
     return(
         <main>
             <div className="form">

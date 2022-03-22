@@ -5,7 +5,7 @@ export default function Meme()
 {
 
     const [memesData,setMemesData] = useState([])
-    const [memeURL, setMemeURL] = useState("https://i.imgflip.com/1bij.jpg");
+    const [meme, setMeme] = useState({memeURL: "https://i.imgflip.com/1bij.jpg", topText:"", bottomText: ""});
 
     useEffect(()=>{
         fetch("https://api.imgflip.com/get_memes")
@@ -23,17 +23,30 @@ export default function Meme()
     function showMeme()
     {
         const randomIndex = Math.floor(Math.random() * memesData.length)
-        setMemeURL(memesData[randomIndex].url)
+        setMeme(prevMeme => {
+            return {...prevMeme,memeURL: memesData[randomIndex].url}
+        })
+    }
+
+    function handleChange(event)
+    {
+        const {name,value} = event.target;
+
+        setMeme(prevMeme => {
+            return {...prevMeme,[name]:value}
+        })
     }
 
     return(
         <main>
             <div className="form">
-                <input type="text" className="form__input" placeholder="Top Text"/>
-                <input type="text" className="form__input" placeholder="Bottom Text"/>
+                <input type="text" className="form__input" placeholder="Top Text" value={meme.topText} name="topText" onChange={handleChange}/>
+                <input type="text" className="form__input" placeholder="Bottom Text" value={meme.bottomText} name="bottomText" onChange={handleChange}/>
                 <button type="submit" className="form__btn" onClick={showMeme}>Get a new meme image 🖼</button>
                 <div className="meme">
-                    <img src={memeURL} alt="meme" className="meme__img"/>
+                    <h2 className="text top__text">{meme.topText}</h2>
+                    <img src={meme.memeURL} alt="meme" className="meme__img"/>
+                    <h2 className="text bottom__text">{meme.bottomText}</h2>
                 </div>
 
             </div>
